@@ -1,0 +1,23 @@
+-   Object.keys(props.ingredients) JavaScript object method. Returns you a list of the keys [salad, bacon, cheese, meat]
+
+- .map(ingredientName => { I renamed this to make more sense to me. On our nice ingredient array we call the map method, which makes a new array. So for each value (like salad) we execute a function and the result of that function is then added to a new array.
+
+-  const amount = props.ingredients[ingredientName] I broke this out, just because it was pretty confusing. For each time we go through the code, we access the ingredients object using the key of the loop we are on (so key would be salad for example) and we get the numeric vale. So if we are on the salad loop this const would be 1.
+
+- [...Array(amount)] We return this Array from our map function, the one we called on the ingredients list. This code makes an array, with the number we get from the constant 'amount'. the spread operator and the brackets make sure we unpack it properly so we can do things with it. If we just have Array(amount) on it's own we get (1) [empty x1] which we can't loop through. So  now when we plug in our salad number we get the array ['undefined']. For meat we would get ['undefined', 'undefined'].
+
+This seemed pretty bonkers to me, but we use it in a second.
+
+- .map((_, i) => { So now we have, for the ingredient loop that we are on, an array of undefined. On THAT array we call a second map function. Here we already know the value will be undefined so we can throw that away (that's the underscore). What we want to know is the index, that's the bit we will use in a minute. So then for each undefined  (for salad ['undefined'], for meat ['undefined', 'undefined']) we return one of our Burger Ingredients.
+
+- key={ingredientName + i} Here is where we use the index we were hanging on to! we reach back up to the top of the first map (which we are still in) and get the ingredient name, then stick the index to it, so 'salad0' 'meat0' 'meat1' (zero based index).
+
+
+
+It helped me to think of this like a for loop inside a for loop.
+
+We iterate through each ingredient type (salad), then within that loop we iterate through the number of each ingredient type (1), and as we go we get the index (0) because we use it to make unique ID numbers (salad0). We then return one of our burger ingredients for each (so for salad just 1, for meat you return 2 etc..), and in the key field you use the unique ID (salad0) and in the value field you use the ingredient type (salad).
+
+
+
+I hope this helps someone, and saves them from noodle brain! :-)   

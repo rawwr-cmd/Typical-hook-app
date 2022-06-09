@@ -29,7 +29,7 @@ const passwordReducer = (state, action) => {
 };
 
 const Login = (props) => {
-  //   console.log(props);
+  // console.log(props);
   // const [enteredEmail, setEnteredEmail] = useState("");
   // const [emailIsValid, setEmailIsValid] = useState();
   // const [enteredPassword, setEnteredPassword] = useState("");
@@ -49,18 +49,18 @@ const Login = (props) => {
   // const pullerForDestructuring = passwordState;
   // console.log(pullerForDestructuring);
 
-  //runs only when validity changes
+  //runs only when validity changes(destructuring to add object properties as dependencies to useEffect())
   const { isValid: emailIsValid } = emailState;
   const { isValid: passwordIsValid } = passwordState;
 
   useEffect(() => {
     const timerId = setTimeout(() => {
-      console.log("hi");
+      // console.log("hi");
       setFormIsValid(emailIsValid && passwordIsValid);
     }, 500);
     //cleanUp function
     return () => {
-      console.log("Clean Up");
+      // console.log("Clean Up");
       clearTimeout(timerId);
     };
   }, [emailIsValid, passwordIsValid]);
